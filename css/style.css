@@ -1,0 +1,98 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+}
+
+a, li {
+  text-decoration: none;
+  list-style: none;
+  background-color: transparent;
+  color: white;
+}
+
+.navBar {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 30px 2%;
+  font-weight: bold;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+  background-color: transparent;
+}
+.navBar .logo_empresa {
+  cursor: pointer;
+  margin-right: auto;
+  background-color: transparent;
+}
+.navBar .nav_links {
+  background-color: transparent;
+}
+.navBar .nav_links li {
+  display: inline-block;
+  padding: 0 20px;
+}
+.navBar .nav_links li a {
+  transition: all 0.3s ease 0s;
+}
+.navBar .nav_links li a:hover {
+  color: red;
+}
+.navBar .cuenta {
+  background-color: red;
+  padding: 9px 25px;
+  border-radius: 50px;
+  color: white;
+  margin-left: 20px;
+  transition: all 0.3s ease 0s;
+}
+.navBar .cuenta:hover {
+  background-color: rgb(255, 82, 82);
+}
+
+.header_principal {
+  background: url(../img/Glass.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 95vh;
+  padding: 13% 0;
+  display: flex;
+  justify-content: start;
+  font-family: "Raleway", sans-serif;
+}
+.header_principal .text_container {
+  background-color: transparent;
+  width: 25%;
+  height: 30vh;
+  margin-left: 20%;
+}
+.header_principal .text_container .producto_principal {
+  font-size: 70px;
+  font-weight: 400;
+  background-color: transparent;
+  color: white;
+  margin-bottom: 20px;
+}
+.header_principal .text_container .literal_linea {
+  width: 100%;
+  height: 2px;
+  background-color: red;
+  margin-bottom: 20px;
+}
+.header_principal .text_container .descripción_tienda {
+  font-size: 40px;
+  font-weight: lighter;
+  background-color: transparent;
+  color: white;
+}
+
+/*# sourceMappingURL=style.css.map */

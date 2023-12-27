@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100&display=swap");
 * {
   box-sizing: border-box;
   margin: 0;
@@ -9,11 +10,28 @@
   color: rgb(0, 0, 0);
 }
 
+main {
+  min-height: 100vh;
+  margin-bottom: -400px;
+}
+
 a, li {
   text-decoration: none;
   list-style: none;
   background-color: transparent;
   color: white;
+}
+
+.boton {
+  background-color: red;
+  padding: 9px 25px;
+  border-radius: 50px;
+  color: white;
+  border: none;
+  transition: all 0.3s ease 0s;
+}
+.boton:hover {
+  background-color: rgb(255, 82, 82);
 }
 
 .navBar {
@@ -27,6 +45,7 @@ a, li {
   font-size: 16px;
   font-family: "Montserrat", sans-serif;
   background-color: transparent;
+  z-index: 10000;
 }
 .navBar .logo_empresa {
   cursor: pointer;
@@ -35,6 +54,7 @@ a, li {
 }
 .navBar .nav_links {
   background-color: transparent;
+  margin-right: 20px;
 }
 .navBar .nav_links li {
   display: inline-block;
@@ -44,18 +64,7 @@ a, li {
   transition: all 0.3s ease 0s;
 }
 .navBar .nav_links li a:hover {
-  color: red;
-}
-.navBar .cuenta {
-  background-color: red;
-  padding: 9px 25px;
-  border-radius: 50px;
-  color: white;
-  margin-left: 20px;
-  transition: all 0.3s ease 0s;
-}
-.navBar .cuenta:hover {
-  background-color: rgb(255, 82, 82);
+  color: rgb(153, 87, 87);
 }
 
 .header_principal {
@@ -93,6 +102,220 @@ a, li {
   font-weight: lighter;
   background-color: transparent;
   color: white;
+}
+
+.tarjetas {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  text-align: center;
+  padding: 100px 0;
+  gap: 0 20px;
+}
+.tarjetas .tarjeta_1 {
+  width: 400px;
+  height: 500px;
+}
+.tarjetas .tarjeta_1 .imagen_producto_1 {
+  background: url(../img/Ghost.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 100%;
+  height: 79%;
+}
+
+.slogan_1 {
+  background: url(../img/Vaina.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20rem;
+  width: 100%;
+  height: 500px;
+}
+.slogan_1 .frase_1 {
+  background-color: transparent;
+  font-family: "Raleway", sans-serif;
+  font-weight: lighter;
+  font-size: 40px;
+  color: white;
+  z-index: 1000;
+  filter: drop-shadow(0 0 15px rgb(0, 0, 0));
+}
+.slogan_1 .frase_1 i {
+  background-color: transparent;
+  color: white;
+}
+.slogan_1::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top right, red, blue);
+  opacity: 0.3;
+}
+
+.detalles_empresa {
+  display: grid;
+  position: relative;
+  width: 100%;
+  grid-template-areas: "tituloCategoria beneficio";
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+}
+.detalles_empresa h3, .detalles_empresa h2, .detalles_empresa p {
+  background: transparent;
+  color: white;
+  filter: drop-shadow(0 0 15px black);
+}
+.detalles_empresa h3, .detalles_empresa h2 {
+  font-size: 30px;
+  font-weight: 400;
+}
+.detalles_empresa p {
+  font-weight: lighter;
+  font-size: 25px;
+}
+.detalles_empresa .titulo_categoria {
+  background: url("https://cdn.shopify.com/s/files/1/0229/0839/files/Untitled_design_2fbf6ff5-8a54-45aa-b5b4-992118d4e2f4.jpg?v=1617647345&width=1024");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 5rem;
+  grid-area: tituloCategoria;
+}
+.detalles_empresa .beneficios {
+  background: red;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  height: 100%;
+  grid-area: beneficio;
+}
+.detalles_empresa .beneficios .cajita_de_beneficios_1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: url("https://cdn.shopify.com/s/files/1/0229/0839/files/MejoresProductosVenderOnline.png?format=webp&v=1673300858");
+  background-size: cover;
+  background-position: center;
+  gap: 20px;
+  padding: 3rem;
+}
+.detalles_empresa .beneficios .cajita_de_beneficios_2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: url("https://cdn.shopify.com/s/files/1/0229/0839/files/productos-para-vender.jpg?v=1641553675");
+  background-size: cover;
+  background-position: center;
+  gap: 20px;
+  padding: 3rem;
+}
+.detalles_empresa .beneficios .cajita_de_beneficios_3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: url("https://www.neolo.com/blog/wp-content/uploads/2020/08/Que-es-la-fotograf%C3%ADa-de-productos-1024x586.jpg");
+  background-size: cover;
+  background-position: center;
+  gap: 20px;
+  padding: 3rem;
+}
+
+.control_del_footer {
+  height: 400px;
+}
+
+footer {
+  background-color: black;
+  position: relative;
+  width: 100%;
+  height: 400px;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  padding: 60px 20%;
+  font-family: "Roboto", sans-serif;
+}
+footer .zona_footer {
+  background-color: transparent;
+  width: 300px;
+  height: 100%;
+}
+footer .zona_footer h2, footer .zona_footer ul, footer .zona_footer li, footer .zona_footer a, footer .zona_footer p, footer .zona_footer nav {
+  background: transparent;
+  color: white;
+}
+footer .zona_footer h2 {
+  margin-bottom: 30px;
+  font-weight: 800;
+}
+footer .zona_footer .navBar_footer {
+  color: white;
+}
+footer .zona_footer .navBar_footer .nav_links_footer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px 0;
+}
+footer .zona_footer .contenedor_redes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  background: transparent;
+}
+footer .zona_footer .contenedor_redes .redsocial_fb {
+  background: url(../img/imagenes_redes/Facebook-logo-blue-circle-large-transparent-png.png);
+}
+footer .zona_footer .contenedor_redes .redsocial_ig {
+  background: url(../img/imagenes_redes/logo_instagram.png.pagespeed.ce.tyGRvcTOKP.png);
+}
+footer .zona_footer .contenedor_redes .redsocial_x {
+  background: url(../img/imagenes_redes/Twitter_new_X_logo.png);
+}
+footer .zona_footer .contenedor_redes .redsocial_yt {
+  background: url(../img/imagenes_redes/Youtube_logo.png);
+}
+footer .zona_footer .contenedor_redes .redsocial_tiktok {
+  background: url(../img/imagenes_redes/tiktok-icon-free-png.webp);
+}
+footer .zona_footer .contenedor_redes .redsocial_fb, footer .zona_footer .contenedor_redes .redsocial_ig, footer .zona_footer .contenedor_redes .redsocial_x, footer .zona_footer .contenedor_redes .redsocial_yt, footer .zona_footer .contenedor_redes .redsocial_tiktok {
+  width: 30px;
+  height: 30px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 10px;
 }
 
 /*# sourceMappingURL=style.css.map */

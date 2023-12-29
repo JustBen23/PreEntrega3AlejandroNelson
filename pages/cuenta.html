@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <header>
+
+        <nav class="navBar">
+            <div class="logo_empresa"><a href="../index.html">Logo</a></div>
+            <ul class="nav_links">
+                <li><a href="./products.html">Productos</a></li>
+                <li><a href="">About us</a></li>
+                <li><a href="">Cart</a></li>
+            </ul>
+            <a href="cuenta.html" class="boton">Account</a>
+        </nav>
+
+    </header>
+
+    <main class="main_cuenta">
+
+        <div class="contenedor_login" id="main">
+            <div class="sign_up">
+                <form action="#">
+                    <h1>Crea una cuenta</h1>
+                    <div class="contenedor_redes">
+                        <a href="#" class="social"><i class='bx bxl-facebook'></i></a>
+                        <a href="#" class="social"><i class='bx bxl-google' ></i></a>
+                        <a href="#" class="social"><i class='bx bxl-linkedin' ></i></a>
+                    </div>
+                    <p>o usa un email para crear tu cuenta</p>
+                    <input type="text" name="txt" placeholder="Nombre" required="">
+                    <input type="email" name="email" placeholder="Correo" required="">
+                    <input type="password" name="pswd" placeholder="Contraseña" required="">
+                    <button>Registrate</button>
+                </form>
+            </div>
+
+            <div class="sign_in">
+                <form action="#">
+                    <h1>Inicia Sesión</h1>
+                    <div class="contenedor_redes">
+                        <a href="#" class="social"><i class='bx bxl-facebook'></i></a>
+                        <a href="#" class="social"><i class='bx bxl-google' ></i></a>
+                        <a href="#" class="social"><i class='bx bxl-linkedin' ></i></a>
+                    </div>
+                    <p>o usa tu correo para iniciar sesión</p>
+                    <input type="email" name="email" placeholder="Correo" required="">
+                    <input type="password" name="pswd" placeholder="Contraseña" required="">
+                    <a href="#">Olvidé mi contraseña</a>
+                    <button>Iniciar Sesión</button>
+                </form>
+            </div>
+            
+            <div class="overlay_container">
+                <div class="overlay">
+                    <div class="overlay_left">
+                        <h1>Bienvenido de vuelta!</h1>
+                        <p>Si ya tienes una cuenta haz click aquí para iniciar sesión</p>
+                        <button id="sign_in_2">Iniciar Sesión</button>
+                    </div>
+                    <div class="overlay_right">
+                        <h1>Hola! Bienvenido</h1>
+                        <p>Haz click abajo para poder crear tu cuenta</p>
+                        <button id="sign_up_2">Registrate</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="control_del_footer"></div>
+    </main>
+
+    <footer>
+        <div class="zona_footer">
+            <h2>Derechos de autor</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae itaque, quam suscipit maiores asperiores ex ipsam labore nulla hic distinctio est quasi pariatur unde quos reiciendis delectus iusto, illo vel saepe deserunt aperiam, praesentium laborum. Libero corrupti facilis doloribus mollitia magnam, perspiciatis reprehenderit vitae sapiente facere, cum perferendis est iusto!</p>
+        </div>
+
+        <div class="zona_footer">
+            <h2>Contenido</h2>
+            <nav class="navBar_footer">
+                <ul class="nav_links_footer">
+                    <li><a href="">Productos</a></li>
+                    <li><a href="">About us</a></li>
+                    <li><a href="">Cart</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="zona_footer">
+            <h2>Redes sociales</h2>
+            <div class="contenedor_redes">
+                <a href="" class="redsocial_fb"></a>
+                <a href="" class="redsocial_ig"></a>
+                <a href="" class="redsocial_tiktok"></a>
+                <a href="" class="redsocial_x"></a>
+                <a href="" class="redsocial_yt"></a>
+            </div>
+        </div>
+    </footer>
+    <script type="text/javascript">
+        const signUpButton = document.getElementById('sign_up_2');
+        const signInButton = document.getElementById('sign_in_2');
+        const main = document.getElementById('main');
+
+        signUpButton.addEventListener('click', () => {
+            main.classList.add("right-panel-active");
+        });
+
+        signInButton.addEventListener('click', () => {
+            main.classList.remove("right-panel-active");
+        });
+    </script>
+</body>
+</html>

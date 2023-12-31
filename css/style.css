@@ -106,7 +106,17 @@ a, li {
   color: white;
 }
 
-.tarjetas {
+.categoria {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: start;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  padding: 3% 2%;
+  gap: 50px;
+}
+.categoria .contenedor_tarjetas {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -115,28 +125,64 @@ a, li {
   justify-content: center;
   background-color: transparent;
   text-align: center;
-  padding: 100px 0;
-  gap: 0 20px;
-  font-family: "Montserrat", sans-serif;
+  gap: 20px;
+  font-family: "Raleway", sans-serif;
 }
-.tarjetas .tarjeta_1 {
+.categoria .contenedor_tarjetas .tarjeta {
+  display: flex;
+  flex-direction: column;
   background-color: transparent;
-  width: 400px;
-  height: 500px;
+  justify-content: space-between;
+  padding: 0;
+  width: 300px;
+  height: 480px;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.4);
 }
-.tarjetas .tarjeta_1 .imagen_producto_1 {
-  background: url(../img/Ghost.png);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
+.categoria .contenedor_tarjetas .tarjeta .imagen_producto {
   width: 100%;
-  height: 79%;
+  height: auto;
 }
-.tarjetas .tarjeta_1 h2, .tarjetas .tarjeta_1 p {
+.categoria .contenedor_tarjetas .tarjeta h2, .categoria .contenedor_tarjetas .tarjeta p, .categoria .contenedor_tarjetas .tarjeta h3 {
   background-color: transparent;
 }
-.tarjetas .tarjeta_1 button {
-  font-weight: bolder;
+.categoria .contenedor_tarjetas .tarjeta .producto {
+  display: flex;
+  flex-direction: column;
+  gap: 10px 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+}
+.categoria .contenedor_tarjetas .tarjeta .valoracion {
+  display: inline-flex;
+  justify-content: space-evenly;
+  align-content: center;
+  align-items: center;
+}
+.categoria .contenedor_tarjetas .tarjeta .valoracion .precio {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 350;
+}
+.categoria .contenedor_tarjetas .tarjeta .valoracion i {
+  color: gold;
+}
+.categoria .contenedor_tarjetas .tarjeta button {
+  position: relative;
+  border: none;
+  background-color: red;
+  width: 100%;
+  height: 10%;
+  bottom: 0;
+  font-size: 20px;
+  font-weight: 500px;
+  color: white;
+  font-family: "Raleway", sans-serif;
+}
+.categoria .contenedor_tarjetas .tarjeta button:hover {
+  background: #ff3838;
 }
 
 .slogan_1 {
@@ -273,10 +319,17 @@ a, li {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: rgb(168, 230, 255);
+  background: url("https://3.bp.blogspot.com/-hNWh6ShDJGs/XFUltMH2fsI/AAAAAAAABz0/_UwOXZDl3ZEtejlpgFQoUBJ_rjt3O9ipgCKgBGAs/w1920-h1080-c/mountains-fog-landscape-scenery-16-4K.jpg");
   min-height: 100%;
   padding: 10%;
   font-family: "Raleway", sans-serif;
+}
+.main_cuenta::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
 }
 .main_cuenta form {
   background: white;
@@ -309,20 +362,20 @@ a, li {
   margin: 15px 0 20px;
 }
 .main_cuenta form a {
-  color: #333;
+  color: #550047;
   font-size: 14px;
   text-decoration: none;
   margin: 15px 0;
 }
 .main_cuenta form button {
   color: white;
-  background-color: red;
+  background-color: rgb(255, 0, 157);
   font-size: 12px;
   font-weight: bold;
   padding: 12px 55px;
   margin: 20px;
   border-radius: 20px;
-  border: 1px solid orange;
+  border: 1px solid rgb(126, 2, 105);
   outline: none;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -460,6 +513,12 @@ a, li {
 .main_cuenta .contenedor_login.right-panel-active .overlay_container {
   transform: translateX(-100%);
 }
+.main_cuenta .contenedor_login.right-panel-active .overlay_right {
+  transform: translateX(20%);
+}
+.main_cuenta .contenedor_login.right-panel-active .overlay_left {
+  transform: translateX(0);
+}
 .main_cuenta .contenedor_login.right-panel-active .sign_up {
   transform: translateX(100%);
   opacity: 1;
@@ -471,11 +530,24 @@ a, li {
 .main_cuenta .contenedor_login.right-panel-active .overlay {
   transform: translateX(50%);
 }
-.main_cuenta .contenedor_login.right-panel-active .overlay_right {
-  transform: translateX(20%);
+
+.pagina_productos {
+  position: relative;
+  padding: 6%;
+  display: flex;
+  flex-direction: row;
+  background-color: lightblue;
 }
-.main_cuenta .contenedor_login.right-panel-active .overlay_left {
-  transform: translateX(0);
+.pagina_productos .contenedor_de_filtros {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  height: auto;
+  background: red;
+}
+.pagina_productos .productos_general {
+  width: 80%;
+  padding: 0;
 }
 
 .control_del_footer {

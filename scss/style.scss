@@ -119,39 +119,93 @@ a, li {
     }
 }
 
-.tarjetas {
+.categoria {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
     width: 100%;
-    height: auto;
-    justify-content: center;
-    background-color: transparent;
+    justify-content: start;
     text-align: center;
-    padding: 100px 0;
-    gap: 0 20px;
     font-family: 'Montserrat', sans-serif; 
+    padding: 3% 2%;
+    gap: 50px;
 
-    .tarjeta_1 {
+    .contenedor_tarjetas {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+        height: auto;
+        justify-content: center;
         background-color: transparent;
-        width: 400px;
-        height: 500px;
+        text-align: center;
+        gap: 20px;
+        font-family: 'Raleway', sans-serif;
 
-        .imagen_producto_1 {
-            background: url(../img/Ghost.png);
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
-            width: 100%;
-            height: 79%;
-        }
-
-        h2, p {
+        .tarjeta {
+            display: flex;
+            flex-direction: column;
             background-color: transparent;
-        }
+            justify-content: space-between;
+            padding: 0;
+            width: 300px;
+            height: 480px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 0 14px rgba(0, 0, 0, 0.4);
 
-        button {
-            font-weight: bolder;
+            .imagen_producto {
+                width: 100%;
+                height: auto;
+            }
+
+            h2, p, h3 {
+                background-color: transparent;
+            }
+
+            .producto {
+                display: flex;
+                flex-direction: column;
+                gap: 10px 0;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 20px;
+                letter-spacing: 0.1px;
+
+                
+            }
+
+            .valoracion {
+                display: inline-flex;
+                justify-content: space-evenly;
+                align-content: center;
+                align-items: center;
+ 
+                .precio {
+                    font-family: 'Montserrat', sans-serif; 
+                    font-weight: 350;
+                }
+
+                i {
+                    color: gold;
+                }
+            }
+
+            button {
+                position: relative;
+                border: none;
+                background-color: red;
+                width: 100%;
+                height: 10%;
+                bottom: 0;
+                font-size: 20px;
+                font-weight: 500px;
+                color: white;
+                font-family: 'Raleway', sans-serif;
+
+                &:hover {
+                    background: #ff3838;
+                }
+            }
         }
     }
 }
@@ -310,11 +364,20 @@ a, li {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: rgb(168, 230, 255);
+    background: url("https://3.bp.blogspot.com/-hNWh6ShDJGs/XFUltMH2fsI/AAAAAAAABz0/_UwOXZDl3ZEtejlpgFQoUBJ_rjt3O9ipgCKgBGAs/w1920-h1080-c/mountains-fog-landscape-scenery-16-4K.jpg");
     min-height: 100%;
     padding: 10%;
     font-family: 'Raleway', sans-serif;
-    
+
+    &::after {
+        // backdrop-filter: blur(2px);
+        
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+    }
 
     form {
         background: white;
@@ -350,7 +413,7 @@ a, li {
         }
 
         a {
-            color: #333;
+            color: #550047;
             font-size: 14px;
             text-decoration: none;
             margin: 15px 0;
@@ -358,13 +421,13 @@ a, li {
 
         button {
             color: white;
-            background-color: red;
+            background-color: rgb(255, 0, 157);
             font-size: 12px;
             font-weight: bold;
             padding: 12px 55px;
             margin: 20px;
             border-radius: 20px;
-            border: 1px solid orange;
+            border: 1px solid rgb(126, 2, 105);
             outline: none;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -526,6 +589,14 @@ a, li {
             transform: translateX(-100%);
         }
 
+        &.right-panel-active .overlay_right {
+            transform: translateX(20%);
+        }
+
+        &.right-panel-active .overlay_left {
+            transform: translateX(0);
+        }
+
         &.right-panel-active .sign_up {
             transform: translateX(100%);
             opacity: 1;
@@ -540,15 +611,35 @@ a, li {
             transform: translateX(50%);
         }
         
-        &.right-panel-active .overlay_right {
-            transform: translateX(20%);
-        }
 
-        &.right-panel-active .overlay_left {
-            transform: translateX(0);
-        }
     }
 }
+
+.pagina_productos {
+    position: relative;
+    padding: 6%;
+    display: flex;
+    flex-direction: row;
+    background-color: lightblue;
+
+    .contenedor_de_filtros {
+        display: flex;
+        flex-direction: column;
+        width: 20%;
+        height: auto;
+        background: red;
+    }
+
+    .productos_general {
+        width: 80%;
+        padding: 0;
+    }
+}
+
+
+
+
+
 
 .control_del_footer {
     height: 400px;

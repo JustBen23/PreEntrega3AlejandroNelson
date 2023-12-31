@@ -197,7 +197,7 @@ a, li {
   justify-content: center;
   transform: translateY(30px);
   box-shadow: 0 0 14px rgba(0, 0, 0, 0.4);
-  transition: all 0.6s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .categoria .contenedor_tarjetas .tarjeta .opciones_carrito .contenedor {
   display: flex;

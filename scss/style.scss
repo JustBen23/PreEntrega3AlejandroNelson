@@ -882,7 +882,49 @@ header {
     }
 }
 
+.carrito_de_compras {
+    width: 100%;
+    min-height: 100vh;
+    padding: 0 10%;
+    background-color: rgba(128, 128, 128, 0.25);
+    display: grid;
+    grid-template-columns: 70% 30%;
 
+    .resumen_de_productos {
+        content: '';
+        width: 100%;
+        height: 100vh;
+    }
+
+    .place_order {
+        display: flex;
+        flex-direction: column;
+        padding: 7%;
+
+        .resumen_producto {
+            text-align: center;
+            width: 100%;
+
+            .contenedor_de_imagen {
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+
+                .titulo_orden {
+                    text-align: center;
+                }
+            }
+
+            .datos_producto{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                width: 100%;
+            }
+        }
+    }
+}
 
 
 

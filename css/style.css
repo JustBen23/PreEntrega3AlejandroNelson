@@ -769,6 +769,42 @@ header nav .nav_links li a:hover {
   font-size: 20px;
 }
 
+.carrito_de_compras {
+  width: 100%;
+  min-height: 100vh;
+  padding: 0 10%;
+  background-color: rgba(128, 128, 128, 0.25);
+  display: grid;
+  grid-template-columns: 70% 30%;
+}
+.carrito_de_compras .resumen_de_productos {
+  content: "";
+  width: 100%;
+  height: 100vh;
+}
+.carrito_de_compras .place_order {
+  display: flex;
+  flex-direction: column;
+  padding: 7%;
+}
+.carrito_de_compras .place_order .resumen_producto {
+  text-align: center;
+  width: 100%;
+}
+.carrito_de_compras .place_order .resumen_producto .contenedor_de_imagen img {
+  width: 100%;
+  height: 100%;
+}
+.carrito_de_compras .place_order .resumen_producto .contenedor_de_imagen .titulo_orden {
+  text-align: center;
+}
+.carrito_de_compras .place_order .resumen_producto .datos_producto {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
 .control_del_footer {
   height: 400px;
 }

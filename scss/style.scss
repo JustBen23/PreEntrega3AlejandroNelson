@@ -885,20 +885,23 @@ header {
 .carrito_de_compras {
     width: 100%;
     min-height: 100vh;
-    padding: 0 10%;
+    padding: 5% 10%;
     background-color: rgba(128, 128, 128, 0.25);
     display: grid;
     grid-template-columns: 70% 30%;
+    font-family: 'Montserrat', sans-serif; 
 
     .resumen_de_productos {
         content: '';
         width: 100%;
         height: 100vh;
+        background: transparent;
     }
 
     .place_order {
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
         padding: 7%;
 
         .resumen_producto {
@@ -906,21 +909,93 @@ header {
             width: 100%;
 
             .contenedor_de_imagen {
+                
                 img {
                     width: 100%;
                     height: 100%;
                 }
 
-                .titulo_orden {
-                    text-align: center;
-                }
             }
 
-            .datos_producto{
-                display: flex;
-                flex-direction: row;
-                justify-content: space-evenly;
+            .titulo_orden {
+                text-align: center;
+                margin: 10px;
+                font-weight: 600;
+            }
+            
+            .datos_producto {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
                 width: 100%;
+                border-bottom: 1px solid black;
+                padding: 5%;
+
+                .especificaciones, .valor_especificaciones {
+                    display: flex;
+                    flex-direction: column;
+                    p {
+                        padding: 5% 7%;
+                    }
+                }
+
+                .especificaciones {
+                    text-align: start;
+                }
+
+                .valor_especificaciones {
+                    text-align: end;
+                }
+            }
+        }
+        
+        .costo_total_producto {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+
+            .columna_nombres, .columna_valores {
+                display: flex;
+                flex-direction: column;
+                p {
+                    padding: 5% 7%;
+                }
+            }
+            
+            .columna_nombres {
+                text-align: start;
+            }
+            .columna_valores {
+                text-align: end;
+            }
+
+            .costos {
+                border-bottom: 1px solid black;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                width: 100%;
+                padding: 5%;
+            }
+
+            .total {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                width: 100%;
+                padding: 5%;
+            }
+        }
+
+        .boton_de_compras {
+            width: 100%;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            background: blueviolet;
+            padding: 6%;
+            font-weight: 600;
+
+            a{
+                color: white;
             }
         }
     }

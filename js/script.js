@@ -146,10 +146,16 @@ const agregarAlCarro = (element) => {
     const producto = inventario.find(elemento => elemento.id == id);
     carro.añadirProductoCarrito(producto);
     if (producto.stock == 0) {
+
         producto.stock = 0;
+
+    } else if (producto.stock < producto.cantidadAgregarACarrito) {
+
+        producto.stock = producto.stock;
     } else {
         producto.stock -= producto.cantidadAgregarACarrito;
     }
+
     producto.cantidadAgregarACarrito = 1;
 
     localStorage.setItem('inventario', JSON.stringify(listaProductos));

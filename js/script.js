@@ -99,13 +99,6 @@ const renderizarTarjetasProductos = (listaProducto) => {
 
 }
 
-const renderizarUnicaTarjeta = (tarjetaARenderizar) => {
-
-    console.log(tarjetaARenderizar);
-    
-    
-}
-
 /* ------------------------------------ x ----------------------------------- */
 
 

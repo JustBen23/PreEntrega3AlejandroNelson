@@ -3,6 +3,7 @@
 /* -------------------------------------------------------------------------- */
 
 const contenedor = document.querySelector(".contenedor_tarjetas");
+const tarjeta = document.querySelector(".tarjeta");
 const inventario = JSON.parse(localStorage.getItem('inventario')) || [];
 
 /* -------------------------------- Filtrado -------------------------------- */
@@ -99,6 +100,7 @@ const renderizarTarjetasProductos = (listaProducto) => {
 
 }
 
+
 /* ------------------------------------ x ----------------------------------- */
 
 
@@ -169,7 +171,9 @@ const favoritoSiONo = (id) => {
     } else if (corazon.favorito == false) {
         corazon.favorito = true;
     }
-    renderizarTarjetasProductos(inventario);
+    //renderizarTarjetasProductos(inventario);
+
+    renderizarTarjetaUnica(corazon);
 }
 
 const sumarCantidad = (id) => {

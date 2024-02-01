@@ -21,7 +21,7 @@ const listaProductos = [
     },
     {
         id: 2,
-        imagen: "../img/cc61e0afec490d5a8e59ba330c67ab2a.jpg",
+        imagen: "../img/tela.jpg",
         nombre: "Tela Azul",
         descipcion: "Este mensaje solo diferencia el producto",
         precio: 29.90,
@@ -37,8 +37,8 @@ const listaProductos = [
     },
     {
         id: 3,
-        imagen: "../img/Ghost.png",
-        nombre: "Ojos brillantes",
+        imagen: "../img/lentes.jpg",
+        nombre: "Lentes de sol",
         descipcion: "Lorem Lorem Lorem Lorem Lorem Lorem Lorem",
         precio: 79.90,
         valoracion: 1,
@@ -53,7 +53,7 @@ const listaProductos = [
     },
     {
         id: 4,
-        imagen: "../img/cc61e0afec490d5a8e59ba330c67ab2a.jpg",
+        imagen: "../img/Personaje.webp",
         nombre: "Personaje",
         descipcion: "Lorem Lorem Lorem Lorem Lorem Lorem Lorem",
         precio: 259.90,
@@ -69,7 +69,7 @@ const listaProductos = [
     },
     {
         id: 5,
-        imagen: "../img/cc61e0afec490d5a8e59ba330c67ab2a.jpg",
+        imagen: "../img/anillo.webp",
         nombre: "Anillo",
         descipcion: "Anillo color dorado para tus gustos",
         precio: 599.90,
@@ -85,7 +85,7 @@ const listaProductos = [
     },
     {
         id: 6,
-        imagen: "../img/Ghost.png",
+        imagen: "../img/franela.jpeg",
         nombre: "Franela",
         descipcion: "Este mensaje solo diferencia el producto 2",
         precio: 89.90,
@@ -101,7 +101,7 @@ const listaProductos = [
     },
     {
         id: 7,
-        imagen: "../img/Ghost.png",
+        imagen: "../img/flotador.webp",
         nombre: "Flotador",
         descipcion: "Lorem Lorem Lorem Lorem Lorem Lorem",
         precio: 79.90,
@@ -117,7 +117,7 @@ const listaProductos = [
     },
     {
         id: 8,
-        imagen: "../img/cc61e0afec490d5a8e59ba330c67ab2a.jpg",
+        imagen: "../img/piscina.jpeg",
         nombre: "Piscina",
         descipcion: "Lorem Lorem Lorem Lorem Lorem Lorem",
         precio: 259.90,

@@ -18,46 +18,163 @@ class Carrito {
         if (posicionProductoAAgregar == -1) {
             if(stock == 0) {
 
-                console.log("No hay stock, no se puede agregar al carrito");
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "bottom-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.onmouseenter = Swal.stopTimer;
+                      toast.onmouseleave = Swal.resumeTimer;
+                    }
+                  });
+                  Toast.fire({
+                    icon: "error",
+                    title: "No hay stock, no se puede agregar al carrito"
+                  });
 
             } else if(stock >= 1) {
                 if (cantidadAgregarACarrito > 1) {
                     if (stock < cantidadAgregarACarrito) {
-                        console.log("No hay más stock, no se puede agregar al carrito");
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: "bottom-end",
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                              toast.onmouseenter = Swal.stopTimer;
+                              toast.onmouseleave = Swal.resumeTimer;
+                            }
+                          });
+                          Toast.fire({
+                            icon: "error",
+                            title: "No hay stock, no se puede agregar al carrito"
+                          });
                     } else if (stock >= cantidadAgregarACarrito) {
                         cantidadEnCarrito += cantidadAgregarACarrito;
                         this.carro.push({id, imagen, nombre, precio, descuento, cantidadEnCarrito});
                         // Resta el stock del producto
                         listaProductos[posicionProductoAAgregado].stock -= cantidadAgregarACarrito;
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: "bottom-end",
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                              toast.onmouseenter = Swal.stopTimer;
+                              toast.onmouseleave = Swal.resumeTimer;
+                            }
+                          });
+                          Toast.fire({
+                            icon: "success",
+                            title: "Se agregó producto al carrito"
+                          });
                     }         
                 } else if (cantidadAgregarACarrito == 1) {
                     cantidadEnCarrito += 1;
                     this.carro.push({id, imagen, nombre, precio, descuento, cantidadEnCarrito});
                     // Resta el stock del producto
                     listaProductos[posicionProductoAAgregado].stock -= 1;
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: "bottom-end",
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                          toast.onmouseenter = Swal.stopTimer;
+                          toast.onmouseleave = Swal.resumeTimer;
+                        }
+                      });
+                      Toast.fire({
+                        icon: "success",
+                        title: "Se agregó producto al carrito"
+                      });
                 }
             }
         } else {
             if(stock == 0) {
 
-                console.log("No hay más stock, no se puede agregar al carrito");
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "bottom-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.onmouseenter = Swal.stopTimer;
+                      toast.onmouseleave = Swal.resumeTimer;
+                    }
+                  });
+                  Toast.fire({
+                    icon: "error",
+                    title: "No hay stock, no se puede agregar al carrito"
+                  });
 
             } else if(stock >= 1) {
                 if (cantidadAgregarACarrito > 1) {
                     if (stock < cantidadAgregarACarrito) {
-                        console.log("No hay más stock, no se puede agregar al carrito");
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: "bottom-end",
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                              toast.onmouseenter = Swal.stopTimer;
+                              toast.onmouseleave = Swal.resumeTimer;
+                            }
+                          });
+                          Toast.fire({
+                            icon: "error",
+                            title: "No hay stock, no se puede agregar al carrito"
+                          });
                     } else if (stock >= cantidadAgregarACarrito) {
                         this.carro[posicionProductoAAgregar].cantidadEnCarrito += cantidadAgregarACarrito;
                         // Resta el stock del producto
                         listaProductos[posicionProductoAAgregado].stock -= cantidadAgregarACarrito;
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: "bottom-end",
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                              toast.onmouseenter = Swal.stopTimer;
+                              toast.onmouseleave = Swal.resumeTimer;
+                            }
+                          });
+                          Toast.fire({
+                            icon: "success",
+                            title: "Se agregó producto al carrito"
+                          });
                     }
                 } else if (cantidadAgregarACarrito == 1) {
                     this.carro[posicionProductoAAgregar].cantidadEnCarrito += 1;
                     // Resta el stock del producto
                     listaProductos[posicionProductoAAgregado].stock -= 1;
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: "bottom-end",
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                          toast.onmouseenter = Swal.stopTimer;
+                          toast.onmouseleave = Swal.resumeTimer;
+                        }
+                      });
+                      Toast.fire({
+                        icon: "success",
+                        title: "Se agregó producto al carrito"
+                      });
                 }
             }
         }
+
         localStorage.setItem('carro', JSON.stringify(this.carro));
         localStorage.setItem('inventario', JSON.stringify(listaProductos));
     }
@@ -68,6 +185,22 @@ class Carrito {
         cantidadAgregarACarrito = 0;
 
         this.carro.splice(posicionProductoAEliminar, 1);
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "bottom-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            }
+          });
+          Toast.fire({
+            icon: "warning",
+            title: "Se elimino producto del carrito"
+          });
 
         localStorage.setItem('carro', JSON.stringify(this.carro));
         localStorage.setItem('inventario', JSON.stringify(listaProductos));

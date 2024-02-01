@@ -151,6 +151,7 @@ const agregarAlCarro = (element) => {
         producto.stock -= producto.cantidadAgregarACarrito;
     }
     producto.cantidadAgregarACarrito = 1;
+
     localStorage.setItem('inventario', JSON.stringify(listaProductos));
     renderizarTarjetasProductos(inventario);
 }

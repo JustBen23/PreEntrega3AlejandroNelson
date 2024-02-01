@@ -270,6 +270,9 @@ header {
                         width: 40%;
                         justify-content: space-between;
                         display: inline-flex;
+                        margin-right: 3px;
+                        border-radius: 10px;
+                        box-shadow: 0 0 10px 3px rgb(0, 0, 0, .2);
 
                         .mas, .menos, .numero {
                             color: black;
@@ -279,10 +282,12 @@ header {
                             align-items: center;
                             width: 40px;
                             height: 40px;
+                            border-radius: 10px;
                         }
 
                         .mas, .menos {
                             background-color: rgba(194, 194, 194, 0.384);
+                            box-shadow: 0 0 2px 1px rgb(0, 0, 0, .2);
                         }
                     }
                 }

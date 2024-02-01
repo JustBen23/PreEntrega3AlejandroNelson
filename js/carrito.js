@@ -1,3 +1,7 @@
+/* -------------------------------------------------------------------------- */
+/*                             Carrito de compras                             */
+/* -------------------------------------------------------------------------- */
+
 class Carrito {
     constructor(carritoDeCompras = []) {
         this.carro = carritoDeCompras;
@@ -96,6 +100,7 @@ const carroDeCompras = JSON.parse(localStorage.getItem('carro')) || [];
 const carro = new Carrito(carroDeCompras);
 const listaEnCarrito = carro.obtenerProductosCarrito();
 
+/* ----------------------------- Renderizaciones ---------------------------- */
 
 const renderizarCarro = (listaCarrito) => {
 
@@ -152,6 +157,10 @@ const renderizarCostos = (lista) => {
                             </div>`;
 }
 
+/* ------------------------------------ x ----------------------------------- */
+
+
+/* ---------------------- Funcionamiento en el carrito ---------------------- */
 
 const eliminarDelCarrito = (elemento) => {
     const id = elemento.target.id;
@@ -164,6 +173,7 @@ const eliminarDelCarrito = (elemento) => {
     renderizarCarro(listaEnCarrito);
 }
 
+/* ------------------------------------ x ----------------------------------- */
 
 renderizarCostos(listaEnCarrito);
 renderizarCarro(listaEnCarrito);

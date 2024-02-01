@@ -58,7 +58,7 @@ header nav {
   top: 0;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   padding: 30px 2%;
   font-weight: bold;
@@ -70,6 +70,7 @@ header nav {
 }
 header nav .logo_empresa {
   cursor: pointer;
+  margin-right: auto;
   background-color: transparent;
 }
 header nav .nav_links {

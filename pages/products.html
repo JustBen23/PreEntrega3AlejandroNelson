@@ -6,6 +6,10 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/carrito.js" defer></script>
+    <script src="../js/productos.js" defer></script>
+    <script src="../js/barra_de_navegacion.js" defer></script>
+    <script src="../js/script.js" defer></script>
     <title>Products</title>
 </head>
 <body>
@@ -30,30 +34,31 @@
 
             <!-- Filtros -->
             <div class="contenedor_de_filtros">
+                <input type="input" id="buscador" placeholder="Buscar...">
                 <div class="area_de_filtro">
-                    <h2 class="titulo_filtro">Filtro</h2>
+                    <h2 class="titulo_filtro">Categoría</h2>
                     <ul>
-                        <li>Filtro 1</li>
-                        <li>Filtro 2</li>
-                        <li>Filtro 3</li>
+                        <button id="categoria_tec">Tecnología</button>
+                        <button id="categoria_hog">Hogar</button>
+                        <button id="categoria_sal">Salud</button>
+                        <button id="categoria_bel">Belleza</button>
                     </ul>
                 </div>
                 <div class="area_de_filtro">
-                    <h2 class="titulo_filtro">Filtro</h2>
+                    <h2 class="titulo_filtro">Ordenar</h2>
                     <ul>
-                        <li>Filtro 1</li>
-                        <li>Filtro 2</li>
-                        <li>Filtro 3</li>
+                        <button id="orden_me-ma">De menor a mayor precio</button>
+                        <button id="orden_ma-me">De mayor a menor precio</button>
                     </ul>
                 </div>
                 <div class="area_de_filtro">
-                    <h2 class="titulo_filtro">Filtro</h2>
+                    <h2 class="titulo_filtro">Estado</h2>
                     <ul>
-                        <li>Filtro 1</li>
-                        <li>Filtro 2</li>
-                        <li>Filtro 3</li>
+                        <button id="estado_n">Nuevo</button>
+                        <button id="estado_u">Usado</button>
                     </ul>
                 </div>
+                <button id="borrar_filtros">Borrar Filtros</button>
             </div>
 
             <!-- Tarjetas resultado de busqueda -->
@@ -61,254 +66,6 @@
                 <div class="categoria">
                     <h2>Resultados de la busqueda</h2>
                     <div class="contenedor_tarjetas">
-                        <div class="tarjeta">
-                            <img src="../img/Ghost.png" alt="" class="imagen_producto">
-                            <div class="producto">
-                                <h2>Fantasmo</h2>
-                                <p>Comparte este fantasma para spokear a la gente</p>
-                            </div>
-                            <div class="valoracion">
-                                <h3 class="precio">59.90$</h3>
-                                <p>5 <span class="estrellas">
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star-half '></i>
-                                </span>
-                                </p>
-                            </div>
-    
-                            <button>Añadir al carrito</button>
-    
-                            <div class="opciones_carrito">
-                                <div class="contenedor">
-                                    <button class="favoritos"><i class='bx bx-heart' ></i></button>
-                                    <div class="cantidad">
-                                        <button class="mas">+</button>
-                                        <div class="numero">1</div>
-                                        <button class="menos">-</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tarjeta">
-                            <img src="../img/Ghost.png" alt="" class="imagen_producto">
-                            <div class="producto">
-                                <h2>Fantasmo</h2>
-                                <p>Comparte este fantasma para spokear a la gente</p>
-                            </div>
-                            <div class="valoracion">
-                                <h3 class="precio">59.90$</h3>
-                                <p>5 <span class="estrellas">
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star-half '></i>
-                                </span>
-                                </p>
-                            </div>
-    
-                            <button>Añadir al carrito</button>
-    
-                            <div class="opciones_carrito">
-                                <div class="contenedor">
-                                    <button class="favoritos"><i class='bx bx-heart' ></i></button>
-                                    <div class="cantidad">
-                                        <button class="mas">+</button>
-                                        <div class="numero">1</div>
-                                        <button class="menos">-</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tarjeta">
-                            <img src="../img/Ghost.png" alt="" class="imagen_producto">
-                            <div class="producto">
-                                <h2>Fantasmo</h2>
-                                <p>Comparte este fantasma para spokear a la gente</p>
-                            </div>
-                            <div class="valoracion">
-                                <h3 class="precio">59.90$</h3>
-                                <p>5 <span class="estrellas">
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star-half '></i>
-                                </span>
-                                </p>
-                            </div>
-    
-                            <button>Añadir al carrito</button>
-    
-                            <div class="opciones_carrito">
-                                <div class="contenedor">
-                                    <button class="favoritos"><i class='bx bx-heart' ></i></button>
-                                    <div class="cantidad">
-                                        <button class="mas">+</button>
-                                        <div class="numero">1</div>
-                                        <button class="menos">-</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tarjeta">
-                            <img src="../img/Ghost.png" alt="" class="imagen_producto">
-                            <div class="producto">
-                                <h2>Fantasmo</h2>
-                                <p>Comparte este fantasma para spokear a la gente</p>
-                            </div>
-                            <div class="valoracion">
-                                <h3 class="precio">59.90$</h3>
-                                <p>5 <span class="estrellas">
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star-half '></i>
-                                </span>
-                                </p>
-                            </div>
-    
-                            <button>Añadir al carrito</button>
-    
-                            <div class="opciones_carrito">
-                                <div class="contenedor">
-                                    <button class="favoritos"><i class='bx bx-heart' ></i></button>
-                                    <div class="cantidad">
-                                        <button class="mas">+</button>
-                                        <div class="numero">1</div>
-                                        <button class="menos">-</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tarjeta">
-                            <img src="../img/Ghost.png" alt="" class="imagen_producto">
-                            <div class="producto">
-                                <h2>Fantasmo</h2>
-                                <p>Comparte este fantasma para spokear a la gente</p>
-                            </div>
-                            <div class="valoracion">
-                                <h3 class="precio">59.90$</h3>
-                                <p>5 <span class="estrellas">
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star-half '></i>
-                                </span>
-                                </p>
-                            </div>
-    
-                            <button>Añadir al carrito</button>
-    
-                            <div class="opciones_carrito">
-                                <div class="contenedor">
-                                    <button class="favoritos"><i class='bx bx-heart' ></i></button>
-                                    <div class="cantidad">
-                                        <button class="mas">+</button>
-                                        <div class="numero">1</div>
-                                        <button class="menos">-</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tarjeta">
-                            <img src="../img/Ghost.png" alt="" class="imagen_producto">
-                            <div class="producto">
-                                <h2>Fantasmo</h2>
-                                <p>Comparte este fantasma para spokear a la gente</p>
-                            </div>
-                            <div class="valoracion">
-                                <h3 class="precio">59.90$</h3>
-                                <p>5 <span class="estrellas">
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star-half '></i>
-                                </span>
-                                </p>
-                            </div>
-    
-                            <button>Añadir al carrito</button>
-    
-                            <div class="opciones_carrito">
-                                <div class="contenedor">
-                                    <button class="favoritos"><i class='bx bx-heart' ></i></button>
-                                    <div class="cantidad">
-                                        <button class="mas">+</button>
-                                        <div class="numero">1</div>
-                                        <button class="menos">-</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tarjeta">
-                            <img src="../img/Ghost.png" alt="" class="imagen_producto">
-                            <div class="producto">
-                                <h2>Fantasmo</h2>
-                                <p>Comparte este fantasma para spokear a la gente</p>
-                            </div>
-                            <div class="valoracion">
-                                <h3 class="precio">59.90$</h3>
-                                <p>5 <span class="estrellas">
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star-half '></i>
-                                </span>
-                                </p>
-                            </div>
-    
-                            <button>Añadir al carrito</button>
-    
-                            <div class="opciones_carrito">
-                                <div class="contenedor">
-                                    <button class="favoritos"><i class='bx bx-heart' ></i></button>
-                                    <div class="cantidad">
-                                        <button class="mas">+</button>
-                                        <div class="numero">1</div>
-                                        <button class="menos">-</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tarjeta">
-                            <img src="../img/Ghost.png" alt="" class="imagen_producto">
-                            <div class="producto">
-                                <h2>Fantasmo</h2>
-                                <p>Comparte este fantasma para spokear a la gente</p>
-                            </div>
-                            <div class="valoracion">
-                                <h3 class="precio">59.90$</h3>
-                                <p>5 <span class="estrellas">
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star '></i>
-                                    <i class='bx bxs-star-half '></i>
-                                </span>
-                                </p>
-                            </div>
-    
-                            <button>Añadir al carrito</button>
-    
-                            <div class="opciones_carrito">
-                                <div class="contenedor">
-                                    <button class="favoritos"><i class='bx bx-heart' ></i></button>
-                                    <div class="cantidad">
-                                        <button class="mas">+</button>
-                                        <div class="numero">1</div>
-                                        <button class="menos">-</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </article>
@@ -348,6 +105,6 @@
         </div>
     </footer>
     
-    <script src="../js/script.js"></script>
+    
 </body>
 </html>

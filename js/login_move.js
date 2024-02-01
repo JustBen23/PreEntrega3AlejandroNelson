@@ -1,3 +1,7 @@
+/* -------------------------------------------------------------------------- */
+/*                            Movimiento del login                            */
+/* -------------------------------------------------------------------------- */
+
 const signUpButton = document.getElementById('sign_up_2');
 const signInButton = document.getElementById('sign_in_2');
 const main = document.getElementById('main');

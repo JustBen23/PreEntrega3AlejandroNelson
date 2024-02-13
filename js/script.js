@@ -4,7 +4,7 @@
 
 const contenedor = document.querySelector(".contenedor_tarjetas");
 const tarjeta = document.querySelector(".tarjeta");
-const inventario = JSON.parse(localStorage.getItem('inventario')) || [];
+// const inventario = JSON.parse(localStorage.getItem('inventario')) || [];
 
 /* -------------------------------- Filtrado -------------------------------- */
 
@@ -61,7 +61,7 @@ const renderizarTarjetasProductos = (listaProducto) => {
                                             <i class='bx ${estrellasValoraciones(element.valoracion)[4]}'></i>
                                         </span>
                                         </p>
-                                        <p>(${element.stock})</p>
+                                        <p id="${element.id}" class="stock">(${element.stock})</p>
                                     </div>
 
                                     <button id="${element.id}" class="addToCart" type="button">Añadir al carrito</button>
@@ -69,16 +69,43 @@ const renderizarTarjetasProductos = (listaProducto) => {
                                 
     });
 
+    const numeroAAgregar = document.querySelectorAll(".numero");
+    const numeroDeStock = document.querySelectorAll(".stock");
+
     // Añadir al carrito de compras
     const botonAdd = document.querySelectorAll(".addToCart");
     botonAdd.forEach(element => {
-        element.addEventListener('click', agregarAlCarro);
+        element.addEventListener('click', (ev) => {
+            agregarAlCarro(ev);
+            let productoAComprar = listaProductos.find(element => element.id == ev.target.id);
+            numeroAAgregar.forEach(element => {
+                if (ev.target.id == element.id) {
+                    element.innerText = 1;
+                }
+            });
+            numeroDeStock.forEach(elemento => {
+                if (ev.target.id == elemento.id) {
+                    elemento.innerText = "(" + productoAComprar.stock + ")";
+                }
+            });
+        });
     });
 
     const botonFav = document.querySelectorAll(".favoritos");
     botonFav.forEach(element => {
         element.addEventListener('click', (ev) => {
-            favoritoSiONo(ev.target.id);
+
+            let corazon = listaProductos.find(element => element.id == ev.target.id);
+            if (corazon.favorito == true) {
+                ev.target.classList.remove("bxs-heart");
+                ev.target.classList.add("bx-heart");
+                corazon.favorito = false;
+            } else if (corazon.favorito == false) {
+                ev.target.classList.remove("bx-heart");
+                ev.target.classList.add("bxs-heart");
+                corazon.favorito = true;
+            }
+
         });
     });
 
@@ -86,20 +113,35 @@ const renderizarTarjetasProductos = (listaProducto) => {
     const botonMas = document.querySelectorAll(".mas");
     botonMas.forEach(element => {
         element.addEventListener('click', (ev) => {
-            sumarCantidad(ev.target.id);
+            let productoAComprar = listaProductos.find(element => element.id == ev.target.id);
+            productoAComprar.cantidadAgregarACarrito++;     
+            numeroAAgregar.forEach(element => {
+                if (productoAComprar.id == element.id) {
+                    element.innerHTML = productoAComprar.cantidadAgregarACarrito;
+                }
+            });
         });
     });
 
     // Boton para restar productos al carrito
     const botonMenos = document.querySelectorAll(".menos");
     botonMenos.forEach(element => {
-        element.addEventListener('click', (ev) => {
-            restarCantidad(ev.target.id);
+        element.addEventListener('click', (evento) => {
+            let productoAComprar = listaProductos.find(element => element.id == evento.target.id);
+            if (productoAComprar.cantidadAgregarACarrito > 1) {
+                productoAComprar.cantidadAgregarACarrito--;
+            } else if (productoAComprar.cantidadAgregarACarrito == -1){
+                productoAComprar.cantidadAgregarACarrito = 1;
+            }
+            numeroAAgregar.forEach(element => {
+                if (productoAComprar.id == element.id) {
+                    element.innerHTML = productoAComprar.cantidadAgregarACarrito;
+                }
+            });
         });
     });
 
 }
-
 
 /* ------------------------------------ x ----------------------------------- */
 
@@ -144,55 +186,10 @@ const estrellasValoraciones = (valoracion) => {
 };
 
 const agregarAlCarro = (element) => {
-    const id = element.target.id; 
-    const producto = inventario.find(elemento => elemento.id == id);
+    const producto = listaProductos.find(elemento => elemento.id == element.target.id);
     carro.añadirProductoCarrito(producto);
-    if (producto.stock == 0) {
-
-        producto.stock = 0;
-
-    } else if (producto.stock < producto.cantidadAgregarACarrito) {
-
-        producto.stock = producto.stock;
-    } else {
-        producto.stock -= producto.cantidadAgregarACarrito;
-    }
-
     producto.cantidadAgregarACarrito = 1;
-
-    localStorage.setItem('inventario', JSON.stringify(listaProductos));
-    renderizarTarjetasProductos(inventario);
-}
-
-const favoritoSiONo = (id) => {
-    let corazon = inventario.find(element => element.id == id);
-    if (corazon.favorito == true) {
-        corazon.favorito = false;;
-    } else if (corazon.favorito == false) {
-        corazon.favorito = true;
-    }
-    //renderizarTarjetasProductos(inventario);
-
-    renderizarTarjetaUnica(corazon);
-}
-
-const sumarCantidad = (id) => {
-    let productoAComprar = inventario.find(element => element.id == id);
-    productoAComprar.cantidadAgregarACarrito++;
-
-    renderizarTarjetasProductos(inventario);
-}
-
-const restarCantidad = (id) => {
-    let productoAComprar = inventario.find(element => element.id == id);
-
-    if (productoAComprar.cantidadAgregarACarrito > 1) { 
-        productoAComprar.cantidadAgregarACarrito--;
-    } else if (productoAComprar.cantidadAgregarACarrito == -1){
-        productoAComprar.cantidadAgregarACarrito = 1;
-    }
-    renderizarTarjetasProductos(inventario);
-
+    // localStorage.setItem('inventario', JSON.stringify(listaProductos));
 }
 
 /* ------------------------------------ x ----------------------------------- */
@@ -203,28 +200,28 @@ const restarCantidad = (id) => {
 /* -------------------------------------------------------------------------- */
 
 categoriaTec.addEventListener('click', () => {
-    const productoFiltrado = inventario.filter((producto) => producto.categoria === "Tecnología");
+    const productoFiltrado = listaProductos.filter((producto) => producto.categoria === "Tecnología");
     renderizarTarjetasProductos(productoFiltrado);
 })
 
 categoriaHog.addEventListener('click', () => {
-    const productoFiltrado = inventario.filter((producto) => producto.categoria === "Hogar");
+    const productoFiltrado = listaProductos.filter((producto) => producto.categoria === "Hogar");
     renderizarTarjetasProductos(productoFiltrado);
 })
 
 categoriaSal.addEventListener('click', () => {
-    const productoFiltrado = inventario.filter((producto) => producto.categoria === "Salud");
+    const productoFiltrado = listaProductos.filter((producto) => producto.categoria === "Salud");
     renderizarTarjetasProductos(productoFiltrado);
 })
 
 categoriaBel.addEventListener('click', () => {
-    const productoFiltrado = inventario.filter((producto) => producto.categoria === "Belleza");
+    const productoFiltrado = listaProductos.filter((producto) => producto.categoria === "Belleza");
     renderizarTarjetasProductos(productoFiltrado);
 })
 
 
 ordenMeMa.addEventListener('click', () => {
-    inventario.sort((a,b) => {
+    listaProductos.sort((a,b) => {
         if(a.precio < b.precio){
             return -1;
         }
@@ -233,11 +230,11 @@ ordenMeMa.addEventListener('click', () => {
         }
         return 0;
     });
-    renderizarTarjetasProductos(inventario);
+    renderizarTarjetasProductos(listaProductos);
 })
 
 ordenMaMe.addEventListener('click', () => {
-    inventario.sort((a,b) => {
+    listaProductos.sort((a,b) => {
         if(a.precio < b.precio){
             return 1;
         }
@@ -246,33 +243,33 @@ ordenMaMe.addEventListener('click', () => {
         }
         return 0;
     });
-    renderizarTarjetasProductos(inventario);
+    renderizarTarjetasProductos(listaProductos);
 })
 
 
 estadoN.addEventListener('click', () => {
-    const productoFiltrado = inventario.filter((producto) => producto.estado === "Nuevo");
+    const productoFiltrado = listaProductos.filter((producto) => producto.estado === "Nuevo");
     renderizarTarjetasProductos(productoFiltrado);
 })
 
 estadoU.addEventListener('click', () => {
-    const productoFiltrado = inventario.filter((producto) => producto.estado === "Usado");
+    const productoFiltrado = listaProductos.filter((producto) => producto.estado === "Usado");
     renderizarTarjetasProductos(productoFiltrado);
 })
 
 
 borrarFiltros.addEventListener('click', () => {
-    renderizarTarjetasProductos(inventario);
+    renderizarTarjetasProductos(listaProductos);
 })
 
 
 barraDeBusqueda.addEventListener("input", (evento) => {
     const inputElemento = evento.target.value;
-    const productoBuscado = inventario.filter((producto) => producto.nombre.toLowerCase().includes(inputElemento.toLowerCase()));
+    const productoBuscado = listaProductos.filter((producto) => producto.nombre.toLowerCase().includes(inputElemento.toLowerCase()));
     
     renderizarTarjetasProductos(productoBuscado);
 });
 
 /* ------------------------------------ x ----------------------------------- */
 
-renderizarTarjetasProductos(inventario);
+renderizarTarjetasProductos(listaProductos);

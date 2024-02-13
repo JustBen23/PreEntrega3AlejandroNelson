@@ -133,7 +133,7 @@ const listaProductos = [
     }
 ]
 
-localStorage.setItem('inventario', JSON.stringify(listaProductos));
+// localStorage.setItem('inventario', JSON.stringify(listaProductos));
 
 //Categorías
 /*  Tecnología

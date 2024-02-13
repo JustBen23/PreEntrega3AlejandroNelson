@@ -176,7 +176,7 @@ class Carrito {
         }
 
         localStorage.setItem('carro', JSON.stringify(this.carro));
-        localStorage.setItem('inventario', JSON.stringify(listaProductos));
+        // localStorage.setItem('inventario', JSON.stringify(listaProductos));
     }
 
     eliminarProductoCarrito({id, cantidadAgregarACarrito}) {
@@ -203,7 +203,7 @@ class Carrito {
           });
 
         localStorage.setItem('carro', JSON.stringify(this.carro));
-        localStorage.setItem('inventario', JSON.stringify(listaProductos));
+        // localStorage.setItem('inventario', JSON.stringify(listaProductos));
     }
 
     obtenerProductosCarrito() {
@@ -265,29 +265,29 @@ const renderizarCarro = (listaCarrito) => {
     }); 
 }
 
-const renderizarCostos = (lista) => {
+const renderizarCostos = () => {
 
-    contenedorCostos.innerHTML = //html
+    contenedorCostos.innerHTML = // html
                                 `<div class="costo_total_producto">
-                                <div class="costos">
-                                    <div class="columna_nombres">
-                                        <p>Productos: </p>
-                                        <p>Envío: </p>
+                                    <div class="costos">
+                                        <div class="columna_nombres">
+                                            <p>Productos: </p>
+                                            <p>Envío: </p>
+                                        </div>
+                                        <div class="columna_valores">
+                                            <p>${carro.cantidadTotalDeProdutosEnCarrito()}</p>
+                                            <p>Gratis</p>
+                                        </div>
                                     </div>
-                                    <div class="columna_valores">
-                                        <p>${carro.cantidadTotalDeProdutosEnCarrito()}</p>
-                                        <p>Gratis</p>
+                                    <div class="total">
+                                        <div class="columna_nombres">
+                                            <p>Total compra: </p>
+                                        </div>
+                                        <div class="columna_valores">
+                                            <p>${carro.totalDeCompra().toFixed(2)}$</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="total">
-                                    <div class="columna_nombres">
-                                        <p>Total compra: </p>
-                                    </div>
-                                    <div class="columna_valores">
-                                        <p>${carro.totalDeCompra().toFixed(2)}$</p>
-                                    </div>
-                                </div>
-                            </div>`;
+                                </div>`;
 }
 
 /* ------------------------------------ x ----------------------------------- */
@@ -301,12 +301,12 @@ const eliminarDelCarrito = (elemento) => {
     carro.eliminarProductoCarrito(producto);
     producto.stock += producto.cantidadEnCarrito;
     producto.cantidadEnCarrito = 0;
-    localStorage.setItem('inventario', JSON.stringify(listaProductos));
+    // localStorage.setItem('inventario', JSON.stringify(listaProductos));
     renderizarCostos(listaEnCarrito);
     renderizarCarro(listaEnCarrito);
 }
 
 /* ------------------------------------ x ----------------------------------- */
 
-renderizarCostos(listaEnCarrito);
+renderizarCostos();
 renderizarCarro(listaEnCarrito);

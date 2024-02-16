@@ -164,6 +164,7 @@ header {
     font-family: 'Montserrat', sans-serif; 
     padding: 3% 2%;
     gap: 50px;
+    overflow: hidden;
 
     .contenedor_tarjetas, #contenedor_tarjetas_destacado {
         display: flex;
@@ -175,7 +176,9 @@ header {
         background-color: transparent;
         text-align: center;
         gap: 20px;
+        padding: 10px;
         font-family: 'Raleway', sans-serif;
+        overflow: hidden;
 
         .tarjeta {
             display: flex;

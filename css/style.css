@@ -149,6 +149,7 @@ header nav .nav_links li a:hover {
   font-family: "Montserrat", sans-serif;
   padding: 3% 2%;
   gap: 50px;
+  overflow: hidden;
 }
 .categoria .contenedor_tarjetas, .categoria #contenedor_tarjetas_destacado {
   display: flex;
@@ -160,7 +161,9 @@ header nav .nav_links li a:hover {
   background-color: transparent;
   text-align: center;
   gap: 20px;
+  padding: 10px;
   font-family: "Raleway", sans-serif;
+  overflow: hidden;
 }
 .categoria .contenedor_tarjetas .tarjeta, .categoria #contenedor_tarjetas_destacado .tarjeta {
   display: flex;
@@ -413,7 +416,7 @@ header nav .nav_links li a:hover {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: url("https://3.bp.blogspot.com/-hNWh6ShDJGs/XFUltMH2fsI/AAAAAAAABz0/_UwOXZDl3ZEtejlpgFQoUBJ_rjt3O9ipgCKgBGAs/w1920-h1080-c/mountains-fog-landscape-scenery-16-4K.jpg");
+  background: url("../img/mountains-fog-landscape-scenery-16-4K.jpg");
   min-height: 100%;
   padding: 10%;
   font-family: "Raleway", sans-serif;

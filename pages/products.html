@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/ring.js"></script>
     <link rel="stylesheet" href="../css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/carrito.js" defer></script>
@@ -15,11 +16,21 @@
 </head>
 <body>
 
+    <l-ring
+        size="40"
+        stroke="5"
+        bg-opacity="0"
+        speed="2"
+        color="black" 
+        class=""
+    ></l-ring>
+
     <header>
 
         <nav class="navBar">
             <div class="logo_empresa"><a href="../index.html">Logo</a></div>
             <ul class="nav_links">
+                <li><a href="../index.html">Inicio</a></li>
                 <li><a href="products.html">Productos</a></li>
                 <li><a href="abousUs.html">About us</a></li>
                 <li><a href="carrito.html">Cart</a></li>

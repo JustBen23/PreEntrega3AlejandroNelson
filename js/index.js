@@ -2,20 +2,15 @@
 /*                         Cargar productos destacados                        */
 /* -------------------------------------------------------------------------- */
 
-const contenedorDestacados = document.querySelectorAll("#destacado");
+const contenedorDestacados = document.querySelector("#contenedor_tarjetas_destacado");
+const productosDestacados = inventario.filter((producto) => producto.destacado == true);
 
-const productosDestacados = listaProductos.filter((producto) => producto.destacado == true);
-
-// renderizarTarjetasProductosDestacados(productosDestacados);
-
-/* -------------------------------------------------------------------------- */
-/*                        Cargar productos en descuento                       */
-/* -------------------------------------------------------------------------- */
-
-const carroDeCompras = [];
-const carro = new Carrito(carroDeCompras);
-const contenedor = document.querySelector(".contenedor_tarjetas");
-const productosConDescuento = listaProductos.filter((producto) => producto.descuento > 0);
+const agregarAlCarro = (element) => {
+    const producto = inventario.find(elemento => elemento.id == element.target.id);
+    carro.añadirProductoCarrito(producto);
+    producto.cantidadAgregarACarrito = 1;
+    // localStorage.setItem('inventario', JSON.stringify(inventario));
+}
 
 const estrellasValoraciones = (valoracion) => {
 
@@ -54,6 +49,55 @@ const estrellasValoraciones = (valoracion) => {
     return list;
 };
 
+const renderizarTarjetasProductosDestacados = (listaProducto) => {
+
+    contenedorDestacados.innerHTML = '';
+
+    listaProducto.forEach(element => {
+
+        contenedorDestacados.innerHTML += //html
+                                `<div class="tarjeta">
+                                    <img src="${element.imagen}" alt="" class="imagen_producto">
+                                    <div class="opciones_carrito">
+                                        <div class="contenedor">
+                                            <div class="cantidad">
+                                                <button id="${element.id}" class="mas">+</button>
+                                                <div id="${element.id}" class="numero">${element.cantidadAgregarACarrito}</div>
+                                                <button id="${element.id}" class="menos">-</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="favoritos"><i id="${element.id}" class='bx ${element.favorito ? "bxs-heart" : "bx-heart"}'></i></button>
+                                    <div class="producto">
+                                        <h2>${element.nombre}</h2>
+                                        <p>${element.descipcion}</p>
+                                    </div>
+                                    <div class="valoracion">
+                                        <h3 class="precio">${element.precio.toFixed(2)}$</h3>
+                                        <p>${element.valoracion}<span class="estrellas">
+                                            <i class='bx ${estrellasValoraciones(element.valoracion)[0]}'></i>
+                                            <i class='bx ${estrellasValoraciones(element.valoracion)[1]}'></i>
+                                            <i class='bx ${estrellasValoraciones(element.valoracion)[2]}'></i>
+                                            <i class='bx ${estrellasValoraciones(element.valoracion)[3]}'></i>
+                                            <i class='bx ${estrellasValoraciones(element.valoracion)[4]}'></i>
+                                        </span>
+                                        </p>
+                                        <p id="${element.id}" class="stock">(${element.stock})</p>
+                                    </div>
+
+                                    <button id="${element.id}" class="addToCart" type="button">Añadir al carrito</button>
+                                </div>`;
+                                
+    });
+}
+
+/* -------------------------------------------------------------------------- */
+/*                        Cargar productos en descuento                       */
+/* -------------------------------------------------------------------------- */
+
+const contenedor = document.querySelector(".contenedor_tarjetas");
+const productosConDescuento = inventario.filter((producto) => producto.descuento > 0);
+
 const renderizarTarjetasProductos = (listaProducto) => {
 
     contenedor.innerHTML = '';
@@ -78,7 +122,7 @@ const renderizarTarjetasProductos = (listaProducto) => {
                                         <p>${element.descipcion}</p>
                                     </div>
                                     <div class="valoracion">
-                                        <h3 class="precio">${element.precio}$</h3>
+                                        <h3 class="precio">${element.precio.toFixed(2)}$</h3>
                                         <p>${element.valoracion}<span class="estrellas">
                                             <i class='bx ${estrellasValoraciones(element.valoracion)[0]}'></i>
                                             <i class='bx ${estrellasValoraciones(element.valoracion)[1]}'></i>
@@ -87,7 +131,7 @@ const renderizarTarjetasProductos = (listaProducto) => {
                                             <i class='bx ${estrellasValoraciones(element.valoracion)[4]}'></i>
                                         </span>
                                         </p>
-                                        <p>(${element.stock})</p>
+                                        <p id="${element.id}" class="stock">(${element.stock})</p>
                                     </div>
 
                                     <button id="${element.id}" class="addToCart" type="button">Añadir al carrito</button>
@@ -95,16 +139,44 @@ const renderizarTarjetasProductos = (listaProducto) => {
                                 
     });
 
+    const numeroAAgregar = document.querySelectorAll(".numero");
+    const numeroDeStock = document.querySelectorAll(".stock");
+
     // Añadir al carrito de compras
     const botonAdd = document.querySelectorAll(".addToCart");
     botonAdd.forEach(element => {
-        element.addEventListener('click', agregarAlCarro);
+        element.addEventListener('click', (ev) => {
+            agregarAlCarro(ev);
+            let productoAComprar = inventario.find(element => element.id == ev.target.id);
+            numeroAAgregar.forEach(element => {
+                if (ev.target.id == element.id) {
+                    element.innerText = 1;
+                }
+            });
+            numeroDeStock.forEach(elemento => {
+                if (ev.target.id == elemento.id) {
+                    elemento.innerText = "(" + productoAComprar.stock + ")";
+                }
+            });
+        });
     });
 
+    // Añadir a favoritos
     const botonFav = document.querySelectorAll(".favoritos");
     botonFav.forEach(element => {
         element.addEventListener('click', (ev) => {
-            favoritoSiONo(ev.target.id);
+
+            let corazon = inventario.find(element => element.id == ev.target.id);
+            if (corazon.favorito == true) {
+                ev.target.classList.remove("bxs-heart");
+                ev.target.classList.add("bx-heart");
+                corazon.favorito = false;
+            } else if (corazon.favorito == false) {
+                ev.target.classList.remove("bx-heart");
+                ev.target.classList.add("bxs-heart");
+                corazon.favorito = true;
+            }
+
         });
     });
 
@@ -112,57 +184,35 @@ const renderizarTarjetasProductos = (listaProducto) => {
     const botonMas = document.querySelectorAll(".mas");
     botonMas.forEach(element => {
         element.addEventListener('click', (ev) => {
-            sumarCantidad(ev.target.id);
+            let productoAComprar = inventario.find(element => element.id == ev.target.id);
+            productoAComprar.cantidadAgregarACarrito++;     
+            numeroAAgregar.forEach(element => {
+                if (productoAComprar.id == element.id) {
+                    element.innerHTML = productoAComprar.cantidadAgregarACarrito;
+                }
+            });
         });
     });
 
     // Boton para restar productos al carrito
     const botonMenos = document.querySelectorAll(".menos");
     botonMenos.forEach(element => {
-        element.addEventListener('click', (ev) => {
-            restarCantidad(ev.target.id);
+        element.addEventListener('click', (evento) => {
+            let productoAComprar = inventario.find(element => element.id == evento.target.id);
+            if (productoAComprar.cantidadAgregarACarrito > 1) {
+                productoAComprar.cantidadAgregarACarrito--;
+            } else if (productoAComprar.cantidadAgregarACarrito == -1){
+                productoAComprar.cantidadAgregarACarrito = 1;
+            }
+            numeroAAgregar.forEach(element => {
+                if (productoAComprar.id == element.id) {
+                    element.innerHTML = productoAComprar.cantidadAgregarACarrito;
+                }
+            });
         });
     });
 
 }
 
-const agregarAlCarro = (element) => {
-    const id = element.target.id;  
-    const producto = listaProductos.find(elemento => elemento.id == id);
-    carro.añadirProductoCarrito(producto);
-    producto.cantidadAgregarACarrito = 1;
-    renderizarTarjetasProductos(listaProductos);
-}
-
-const favoritoSiONo = (id) => {
-    let corazon = listaProductos.find(element => element.id == id);
-    if (corazon.favorito == true) {
-        corazon.favorito = false;
-    } else if (corazon.favorito == false) {
-        corazon.favorito = true;
-    }
-    
-    renderizarTarjetasProductos(listaProductos);
-    // renderizarUnicaTarjeta(corazon);
-}
-
-const sumarCantidad = (id) => {
-    let productoAComprar = listaProductos.find(element => element.id == id);
-    productoAComprar.cantidadAgregarACarrito++;
-
-    renderizarTarjetasProductos(listaProductos);
-}
-
-const restarCantidad = (id) => {
-    let productoAComprar = listaProductos.find(element => element.id == id);
-
-    if (productoAComprar.cantidadAgregarACarrito > 1) { 
-        productoAComprar.cantidadAgregarACarrito--;
-    } else if (productoAComprar.cantidadAgregarACarrito == -1){
-        productoAComprar.cantidadAgregarACarrito = 1;
-    }
-    renderizarTarjetasProductos(listaProductos);
-
-}
-
+renderizarTarjetasProductosDestacados(productosDestacados);
 renderizarTarjetasProductos(productosConDescuento);

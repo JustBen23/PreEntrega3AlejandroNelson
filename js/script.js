@@ -4,7 +4,20 @@
 
 const contenedor = document.querySelector(".contenedor_tarjetas");
 const tarjeta = document.querySelector(".tarjeta");
-// const inventario = JSON.parse(localStorage.getItem('inventario')) || [];
+
+/* --------------------------------- Loading -------------------------------- */
+
+const loader = document.querySelector("l-ring");
+
+const mostrarLoading = () => {
+    loader.classList.add("loading");
+}
+
+const ocultarLoading = () => {
+    loader.classList.remove("loading");
+}
+
+/* ------------------------------------ x ----------------------------------- */
 
 /* -------------------------------- Filtrado -------------------------------- */
 
@@ -27,6 +40,21 @@ const borrarFiltros = document.querySelector("#borrar_filtros");
 
 
 /* ------------------------------- Renderizado ------------------------------ */
+
+const endPoint = '../inventario.json';
+
+mostrarLoading()
+fetch(endPoint)
+    .then(respuesta => respuesta.json())
+    .then(resp => {
+        const inventarioData = resp.data;
+        localStorage.setItem('inventarioData', JSON.stringify(inventarioData));
+        renderizarTarjetasProductos(inventarioData);
+    })
+    
+.finally( () => {
+    ocultarLoading();
+})
 
 const renderizarTarjetasProductos = (listaProducto) => {
 
@@ -77,7 +105,9 @@ const renderizarTarjetasProductos = (listaProducto) => {
     botonAdd.forEach(element => {
         element.addEventListener('click', (ev) => {
             agregarAlCarro(ev);
-            let productoAComprar = listaProductos.find(element => element.id == ev.target.id);
+
+            let productoAComprar = inventarioStock.find(element => element.id == ev.target.id);
+
             numeroAAgregar.forEach(element => {
                 if (ev.target.id == element.id) {
                     element.innerText = 1;
@@ -91,11 +121,12 @@ const renderizarTarjetasProductos = (listaProducto) => {
         });
     });
 
+    // Añadir a favoritos
     const botonFav = document.querySelectorAll(".favoritos");
     botonFav.forEach(element => {
         element.addEventListener('click', (ev) => {
 
-            let corazon = listaProductos.find(element => element.id == ev.target.id);
+            let corazon = inventario.find(element => element.id == ev.target.id);
             if (corazon.favorito == true) {
                 ev.target.classList.remove("bxs-heart");
                 ev.target.classList.add("bx-heart");
@@ -113,7 +144,7 @@ const renderizarTarjetasProductos = (listaProducto) => {
     const botonMas = document.querySelectorAll(".mas");
     botonMas.forEach(element => {
         element.addEventListener('click', (ev) => {
-            let productoAComprar = listaProductos.find(element => element.id == ev.target.id);
+            let productoAComprar = inventario.find(element => element.id == ev.target.id);
             productoAComprar.cantidadAgregarACarrito++;     
             numeroAAgregar.forEach(element => {
                 if (productoAComprar.id == element.id) {
@@ -127,7 +158,7 @@ const renderizarTarjetasProductos = (listaProducto) => {
     const botonMenos = document.querySelectorAll(".menos");
     botonMenos.forEach(element => {
         element.addEventListener('click', (evento) => {
-            let productoAComprar = listaProductos.find(element => element.id == evento.target.id);
+            let productoAComprar = inventario.find(element => element.id == evento.target.id);
             if (productoAComprar.cantidadAgregarACarrito > 1) {
                 productoAComprar.cantidadAgregarACarrito--;
             } else if (productoAComprar.cantidadAgregarACarrito == -1){
@@ -140,7 +171,6 @@ const renderizarTarjetasProductos = (listaProducto) => {
             });
         });
     });
-
 }
 
 /* ------------------------------------ x ----------------------------------- */
@@ -185,11 +215,14 @@ const estrellasValoraciones = (valoracion) => {
     return list;
 };
 
+/* ---------------------------------- Ideas --------------------------------- */
+// Hacer que el localstorage guarde el stock restante y que sobrescriba el actual
+/* ------------------------------ Fin de ideas ------------------------------ */
+
 const agregarAlCarro = (element) => {
-    const producto = listaProductos.find(elemento => elemento.id == element.target.id);
+    const producto = inventario.find(elemento => elemento.id == element.target.id);
     carro.añadirProductoCarrito(producto);
     producto.cantidadAgregarACarrito = 1;
-    // localStorage.setItem('inventario', JSON.stringify(listaProductos));
 }
 
 /* ------------------------------------ x ----------------------------------- */
@@ -200,28 +233,28 @@ const agregarAlCarro = (element) => {
 /* -------------------------------------------------------------------------- */
 
 categoriaTec.addEventListener('click', () => {
-    const productoFiltrado = listaProductos.filter((producto) => producto.categoria === "Tecnología");
+    const productoFiltrado = inventario.filter((producto) => producto.categoria === "Tecnología");
     renderizarTarjetasProductos(productoFiltrado);
 })
 
 categoriaHog.addEventListener('click', () => {
-    const productoFiltrado = listaProductos.filter((producto) => producto.categoria === "Hogar");
+    const productoFiltrado = inventario.filter((producto) => producto.categoria === "Hogar");
     renderizarTarjetasProductos(productoFiltrado);
 })
 
 categoriaSal.addEventListener('click', () => {
-    const productoFiltrado = listaProductos.filter((producto) => producto.categoria === "Salud");
+    const productoFiltrado = inventario.filter((producto) => producto.categoria === "Salud");
     renderizarTarjetasProductos(productoFiltrado);
 })
 
 categoriaBel.addEventListener('click', () => {
-    const productoFiltrado = listaProductos.filter((producto) => producto.categoria === "Belleza");
+    const productoFiltrado = inventario.filter((producto) => producto.categoria === "Belleza");
     renderizarTarjetasProductos(productoFiltrado);
 })
 
 
 ordenMeMa.addEventListener('click', () => {
-    listaProductos.sort((a,b) => {
+    inventario.sort((a,b) => {
         if(a.precio < b.precio){
             return -1;
         }
@@ -230,11 +263,11 @@ ordenMeMa.addEventListener('click', () => {
         }
         return 0;
     });
-    renderizarTarjetasProductos(listaProductos);
+    renderizarTarjetasProductos(inventario);
 })
 
 ordenMaMe.addEventListener('click', () => {
-    listaProductos.sort((a,b) => {
+    inventario.sort((a,b) => {
         if(a.precio < b.precio){
             return 1;
         }
@@ -243,33 +276,40 @@ ordenMaMe.addEventListener('click', () => {
         }
         return 0;
     });
-    renderizarTarjetasProductos(listaProductos);
+    renderizarTarjetasProductos(inventario);
 })
 
 
 estadoN.addEventListener('click', () => {
-    const productoFiltrado = listaProductos.filter((producto) => producto.estado === "Nuevo");
+    const productoFiltrado = inventario.filter((producto) => producto.estado === "Nuevo");
     renderizarTarjetasProductos(productoFiltrado);
 })
 
 estadoU.addEventListener('click', () => {
-    const productoFiltrado = listaProductos.filter((producto) => producto.estado === "Usado");
+    const productoFiltrado = inventario.filter((producto) => producto.estado === "Usado");
     renderizarTarjetasProductos(productoFiltrado);
 })
 
 
 borrarFiltros.addEventListener('click', () => {
-    renderizarTarjetasProductos(listaProductos);
+    inventario.sort((a,b) => {
+        if(a.id < b.id){
+            return -1;
+        }
+        if (a.id > b.id){
+            return 1;
+        }
+        return 0;
+    });
+    renderizarTarjetasProductos(inventario);
 })
 
 
 barraDeBusqueda.addEventListener("input", (evento) => {
     const inputElemento = evento.target.value;
-    const productoBuscado = listaProductos.filter((producto) => producto.nombre.toLowerCase().includes(inputElemento.toLowerCase()));
+    const productoBuscado = inventario.filter((producto) => producto.nombre.toLowerCase().includes(inputElemento.toLowerCase()));
     
     renderizarTarjetasProductos(productoBuscado);
 });
 
 /* ------------------------------------ x ----------------------------------- */
-
-renderizarTarjetasProductos(listaProductos);

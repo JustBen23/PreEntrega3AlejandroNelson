@@ -13,11 +13,10 @@ class Carrito {
         const posicionProductoAAgregar = this.carro.findIndex(producto => producto.id == id);
 
         // Determina la posición del producto a agregar para poder restarle stock
-        const posicionProductoAAgregado = listaProductos.findIndex(producto => producto.id == id);
+        const posicionProductoAAgregado = inventario.findIndex(producto => producto.id == id);
 
         if (posicionProductoAAgregar == -1) {
             if(stock == 0) {
-
                 const Toast = Swal.mixin({
                     toast: true,
                     position: "bottom-end",
@@ -33,7 +32,6 @@ class Carrito {
                     icon: "error",
                     title: "No hay stock, no se puede agregar al carrito"
                   });
-
             } else if(stock >= 1) {
                 if (cantidadAgregarACarrito > 1) {
                     if (stock < cantidadAgregarACarrito) {
@@ -56,7 +54,7 @@ class Carrito {
                         cantidadEnCarrito += cantidadAgregarACarrito;
                         this.carro.push({id, imagen, nombre, precio, descuento, cantidadEnCarrito});
                         // Resta el stock del producto
-                        listaProductos[posicionProductoAAgregado].stock -= cantidadAgregarACarrito;
+                        inventario[posicionProductoAAgregado].stock -= cantidadAgregarACarrito;
                         const Toast = Swal.mixin({
                             toast: true,
                             position: "bottom-end",
@@ -77,7 +75,7 @@ class Carrito {
                     cantidadEnCarrito += 1;
                     this.carro.push({id, imagen, nombre, precio, descuento, cantidadEnCarrito});
                     // Resta el stock del producto
-                    listaProductos[posicionProductoAAgregado].stock -= 1;
+                    inventario[posicionProductoAAgregado].stock -= 1;
                     const Toast = Swal.mixin({
                         toast: true,
                         position: "bottom-end",
@@ -135,7 +133,7 @@ class Carrito {
                     } else if (stock >= cantidadAgregarACarrito) {
                         this.carro[posicionProductoAAgregar].cantidadEnCarrito += cantidadAgregarACarrito;
                         // Resta el stock del producto
-                        listaProductos[posicionProductoAAgregado].stock -= cantidadAgregarACarrito;
+                        inventario[posicionProductoAAgregado].stock -= cantidadAgregarACarrito;
                         const Toast = Swal.mixin({
                             toast: true,
                             position: "bottom-end",
@@ -155,7 +153,7 @@ class Carrito {
                 } else if (cantidadAgregarACarrito == 1) {
                     this.carro[posicionProductoAAgregar].cantidadEnCarrito += 1;
                     // Resta el stock del producto
-                    listaProductos[posicionProductoAAgregado].stock -= 1;
+                    inventario[posicionProductoAAgregado].stock -= 1;
                     const Toast = Swal.mixin({
                         toast: true,
                         position: "bottom-end",
@@ -176,7 +174,7 @@ class Carrito {
         }
 
         localStorage.setItem('carro', JSON.stringify(this.carro));
-        // localStorage.setItem('inventario', JSON.stringify(listaProductos));
+        localStorage.setItem('inventarioStock', JSON.stringify(inventario));
     }
 
     eliminarProductoCarrito({id, cantidadAgregarACarrito}) {
@@ -203,7 +201,7 @@ class Carrito {
           });
 
         localStorage.setItem('carro', JSON.stringify(this.carro));
-        // localStorage.setItem('inventario', JSON.stringify(listaProductos));
+        localStorage.setItem('inventarioStock', JSON.stringify(inventario));
     }
 
     obtenerProductosCarrito() {
@@ -301,7 +299,7 @@ const eliminarDelCarrito = (elemento) => {
     carro.eliminarProductoCarrito(producto);
     producto.stock += producto.cantidadEnCarrito;
     producto.cantidadEnCarrito = 0;
-    // localStorage.setItem('inventario', JSON.stringify(listaProductos));
+    // localStorage.setItem('inventario', JSON.stringify(inventario));
     renderizarCostos(listaEnCarrito);
     renderizarCarro(listaEnCarrito);
 }

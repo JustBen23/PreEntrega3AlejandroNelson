@@ -9,7 +9,6 @@ const agregarAlCarro = (element) => {
     const producto = inventario.find(elemento => elemento.id == element.target.id);
     carro.añadirProductoCarrito(producto);
     producto.cantidadAgregarACarrito = 1;
-    // localStorage.setItem('inventario', JSON.stringify(inventario));
 }
 
 const estrellasValoraciones = (valoracion) => {

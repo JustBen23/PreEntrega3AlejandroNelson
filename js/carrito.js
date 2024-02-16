@@ -299,7 +299,6 @@ const eliminarDelCarrito = (elemento) => {
     carro.eliminarProductoCarrito(producto);
     producto.stock += producto.cantidadEnCarrito;
     producto.cantidadEnCarrito = 0;
-    // localStorage.setItem('inventario', JSON.stringify(inventario));
     renderizarCostos(listaEnCarrito);
     renderizarCarro(listaEnCarrito);
 }

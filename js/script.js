@@ -41,20 +41,25 @@ const borrarFiltros = document.querySelector("#borrar_filtros");
 
 /* ------------------------------- Renderizado ------------------------------ */
 
-const endPoint = '../inventario.json';
-
-mostrarLoading()
-fetch(endPoint)
-    .then(respuesta => respuesta.json())
-    .then(resp => {
-        const inventarioData = resp.data;
-        localStorage.setItem('inventarioData', JSON.stringify(inventarioData));
-        renderizarTarjetasProductos(inventarioData);
-    })
-    
-.finally( () => {
+const cargarProductos = async () => {
+    mostrarLoading();
+    try {
+        const endPoint = '../inventario.json';
+        const respuesta = await fetch(endPoint);
+        const json =  await respuesta.json();
+        renderizarTarjetasProductos(json.data);
+    } catch (error) {
+        Swal.fire({
+            title: "Error",
+            text: 'Ocurrió un error en el servidor',
+            icon: "error",
+            confirmButtomText: 'Aceptar'
+        })
+    }
     ocultarLoading();
-})
+}
+
+cargarProductos();
 
 const renderizarTarjetasProductos = (listaProducto) => {
 
@@ -106,7 +111,7 @@ const renderizarTarjetasProductos = (listaProducto) => {
         element.addEventListener('click', (ev) => {
             agregarAlCarro(ev);
 
-            let productoAComprar = inventarioStock.find(element => element.id == ev.target.id);
+            let productoAComprar = inventario.find(element => element.id == ev.target.id);
 
             numeroAAgregar.forEach(element => {
                 if (ev.target.id == element.id) {

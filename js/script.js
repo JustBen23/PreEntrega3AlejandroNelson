@@ -46,7 +46,8 @@ const cargarProductos = async () => {
     try {
         const endPoint = '../inventario.json';
         const respuesta = await fetch(endPoint);
-        const json =  await respuesta.json();
+        const json = await respuesta.json();
+        localStorage.setItem('inventarioData',JSON.stringify(json.data));
         renderizarTarjetasProductos(json.data);
     } catch (error) {
         Swal.fire({

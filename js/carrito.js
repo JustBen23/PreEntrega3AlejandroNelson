@@ -174,7 +174,6 @@ class Carrito {
         }
 
         localStorage.setItem('carro', JSON.stringify(this.carro));
-        localStorage.setItem('inventarioStock', JSON.stringify(inventario));
     }
 
     eliminarProductoCarrito({id, cantidadAgregarACarrito}) {
@@ -201,7 +200,6 @@ class Carrito {
           });
 
         localStorage.setItem('carro', JSON.stringify(this.carro));
-        localStorage.setItem('inventarioStock', JSON.stringify(inventario));
     }
 
     obtenerProductosCarrito() {

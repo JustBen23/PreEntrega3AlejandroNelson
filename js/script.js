@@ -4,6 +4,7 @@
 
 const contenedor = document.querySelector(".contenedor_tarjetas");
 const tarjeta = document.querySelector(".tarjeta");
+let inventario = [];
 
 /* --------------------------------- Loading -------------------------------- */
 
@@ -38,29 +39,9 @@ const borrarFiltros = document.querySelector("#borrar_filtros");
 
 /* ------------------------------------ x ----------------------------------- */
 
+cargarProductos();
 
 /* ------------------------------- Renderizado ------------------------------ */
-
-const cargarProductos = async () => {
-    mostrarLoading();
-    try {
-        const endPoint = '../inventario.json';
-        const respuesta = await fetch(endPoint);
-        const json = await respuesta.json();
-        localStorage.setItem('inventarioData',JSON.stringify(json.data));
-        renderizarTarjetasProductos(json.data);
-    } catch (error) {
-        Swal.fire({
-            title: "Error",
-            text: 'Ocurrió un error en el servidor',
-            icon: "error",
-            confirmButtomText: 'Aceptar'
-        })
-    }
-    ocultarLoading();
-}
-
-cargarProductos();
 
 const renderizarTarjetasProductos = (listaProducto) => {
 
@@ -319,3 +300,4 @@ barraDeBusqueda.addEventListener("input", (evento) => {
 });
 
 /* ------------------------------------ x ----------------------------------- */
+
